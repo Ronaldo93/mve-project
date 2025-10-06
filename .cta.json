@@ -1,0 +1,22 @@
+{
+  "projectName": "mve-project",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "addOnOptions": {},
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "biome",
+    "convex",
+    "form",
+    "tanstack-query",
+    "shadcn",
+    "start",
+    "storybook",
+    "store",
+    "t3env"
+  ]
+}
