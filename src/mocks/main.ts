@@ -4,7 +4,7 @@ import { kanbanBoard } from './fakedata'
 
 export const handlers = [
   // get boards
-  http.get('http://localhost:4321/api/boards', () => {
+  http.get('/api/boards', () => {
     return HttpResponse.json({
       kanbanBoard,
     })

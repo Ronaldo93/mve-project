@@ -7,8 +7,12 @@ if (import.meta.env.DEV && import.meta.env.SSR) {
 // Browser-only (client) mock
 if (import.meta.env.DEV && !import.meta.env.SSR) {
   const { worker } = await import('../mocks/browser')
-  worker.start()
+  await worker.start({
+    serviceWorker: { url: '/mockServiceWorker.js' },
+  })
 }
+
+//
 
 import {
   HeadContent,
