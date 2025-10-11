@@ -6,7 +6,7 @@ export function KanbanTask({ task }: { task: TaskType }) {
   const hover = "hover:cursor-pointer hover:bg-slate-200 transition-all duration-200"
 
   return (
-    <Card className={`w-72 rounded-md border-0 shadow-none ${hover}`}>
+    <Card className={`flex flex-col gap-2 w-72 h-24 rounded-md border-0 shadow-none ${hover}`}>
       <CardHeader>
         <CardTitle className={`pointer-events-auto`}>{task.name}</CardTitle>
       </CardHeader>

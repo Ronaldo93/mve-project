@@ -1,3 +1,15 @@
+// SSR-only (server) mock
+if (import.meta.env.DEV && import.meta.env.SSR) {
+  const { server } = await import('../mocks/server')
+  server.listen()
+}
+
+// Browser-only (client) mock
+if (import.meta.env.DEV && !import.meta.env.SSR) {
+  const { worker } = await import('../mocks/browser')
+  worker.start()
+}
+
 import {
   HeadContent,
   Scripts,
