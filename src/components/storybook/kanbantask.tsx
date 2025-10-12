@@ -1,12 +1,29 @@
-// import { Draggable } from "@dnd-kit/core"
-
+import { useDraggable } from "@dnd-kit/core"
+import { CSS } from "@dnd-kit/utilities"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 
-export function KanbanTask({ task }: { task: TaskType }) {
-  const hover = "hover:cursor-pointer hover:bg-slate-200 transition-all duration-200"
+export function KanbanTask({ task, isDragging = false }: { task: TaskType; isDragging?: boolean }) {
+  const { attributes, listeners, setNodeRef, transform, isDragging: isDraggingState } = useDraggable({
+    id: task.id,
+  })
+  
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    opacity: isDraggingState ? 0.5 : 1,
+  }
+  
+  const hover = "hover:cursor-grab active:cursor-grabbing hover:bg-slate-200 transition-all duration-200"
 
   return (
-    <Card className={`flex flex-col gap-2 w-72 h-24 rounded-md border-0 shadow-none ${hover}`}>
+    <Card 
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+      className={`flex flex-col gap-2 w-72 h-24 rounded-md border-0 shadow-none ${hover} ${
+        isDragging ? 'cursor-grabbing shadow-lg rotate-3' : ''
+      }`}
+    >
       <CardHeader>
         <CardTitle className={`pointer-events-auto`}>{task.name}</CardTitle>
       </CardHeader>

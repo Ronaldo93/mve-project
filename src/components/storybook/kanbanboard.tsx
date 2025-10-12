@@ -1,4 +1,5 @@
 import { KanbanTask, TaskType } from "./kanbantask"
+import { useDroppable } from '@dnd-kit/core'
 
 // possible board types
 // qq refactor: rename to KanbanBoardType
@@ -14,13 +15,21 @@ export interface KanbanBoardType {
  * @returns 
  */
 export function KanbanBoard({ board }: { board: KanbanBoardType }) {
+  const { setNodeRef, isOver } = useDroppable({
+    id: board.id,
+  })
 
-  return <div className='flex flex-col gap-4 h-full w-64 bg-slate-100 rounded-lg p-4 w-84'>
+  return <div 
+    ref={setNodeRef}
+    className={`flex flex-col gap-4 h-full w-64 bg-slate-100 rounded-lg p-4 w-84 transition-colors ${
+      isOver ? 'bg-slate-200 ring-2 ring-blue-400' : ''
+    }`}
+  >
     {/* board header */}
     <Header board={board} />
     {/* list of tasks */}
     <div className='self-center'>
-    <ListOfTasks board={board} />
+      <ListOfTasks board={board} />
     </div>
   </div>
 }
