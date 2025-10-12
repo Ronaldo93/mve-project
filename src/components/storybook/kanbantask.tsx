@@ -3,6 +3,8 @@ import { CSS } from "@dnd-kit/utilities"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 
 export function KanbanTask({ task, isDragging = false }: { task: TaskType; isDragging?: boolean }) {
+
+  // display state of the task (for ui dragging)
   const { attributes, listeners, setNodeRef, transform, isDragging: isDraggingState } = useDraggable({
     id: task.id,
   })
